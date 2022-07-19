@@ -1,7 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage ('Compile Stage') {
+        stage('Git checkout'){
+            steps{
+                git branch: 'dev', url: 'https://github.com/SriChandana24/pet-clinic.git'
+        }
+        
+        /*stage ('Compile Stage') {
 
             steps {
                 withMaven(maven : 'maven') {
@@ -22,6 +27,6 @@ pipeline {
             steps {
                 sh 'ansible-playbook -i inv.ini main.yml'
             }
-        }
+        }*/
     }
 }
