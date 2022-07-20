@@ -9,7 +9,7 @@ pipeline {
 
             steps{
                 withSonarQubeEnv('sonarqube-9.5') {
-                sh "mvn sonar:sonar"
+                sh "mvn clean sonar:sonar"
                  
                 }
             }
