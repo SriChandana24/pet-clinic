@@ -23,11 +23,13 @@ pipeline {
                     sh 'mvn package'                
             }
         }
-        
-        stage ('Deploy') {
-            steps {
-                sh 'ansible-playbook -i inv.ini main.yml'
+                
+    }
+    
+    post {
+            always {
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                junit 'target/surefire-reports/*.xml'
             }
         }
-    }
 }
