@@ -5,6 +5,15 @@ pipeline {
         } 
     
     stages {
+        stage('SonarQube Analysis') {
+            steps{
+                withSonarQubeEnv('sonarqube-9.5') {
+                sh "mvn sonar:sonar"
+                 
+                }
+            }
+            
+            
         stage ('test Stage') {
 
             steps {                
@@ -25,7 +34,7 @@ pipeline {
         }
                 
     }
-    
+
     post {
             always {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
