@@ -6,7 +6,7 @@ pipeline {
     
     stages {
         stage('SonarQube Analysis') {
-            agent { label 'master' }
+
             steps{
                 withSonarQubeEnv('sonarqube-9.5') {
                 sh "mvn sonar:sonar"
