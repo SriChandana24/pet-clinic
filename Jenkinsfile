@@ -5,14 +5,15 @@ pipeline {
         } 
     
     stages {
-        // stage('SonarQube Analysis') {
-        //     steps{
-        //         withSonarQubeEnv('sonarqube-9.5') {
-        //         sh "mvn sonar:sonar"
+        stage('SonarQube Analysis') {
+            agent { label 'master' }
+            steps{
+                withSonarQubeEnv('sonarqube-9.5') {
+                sh "mvn sonar:sonar"
                  
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
             
             
         stage ('test Stage') {
