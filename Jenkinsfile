@@ -1,22 +1,26 @@
 pipeline {
-    agent{
-  label 'test'
+    
+    agent {
+            label 'test'
         } 
+    
     stages {
+        stage ('test Stage') {
+
+            steps {                
+                    sh 'mvn test'                
+            }
+        }
         stage ('Compile Stage') {
 
-            steps {
-                withMaven(maven : 'maven') {
-                    sh 'mvn clean compile'
-                }
+            steps {                
+                    sh 'mvn clean compile'                
             }
         }
         
         stage ('Build') {
-            steps {
-                withMaven(maven : 'maven') {
-                    sh 'mvn package'
-                }
+            steps {                
+                    sh 'mvn package'                
             }
         }
         
