@@ -5,14 +5,14 @@ pipeline {
         } 
     
     stages {
-        stage('SonarQube Analysis') {
-            steps{
-                withSonarQubeEnv('sonarqube-9.5') {
-                sh "mvn sonar:sonar"
+        // stage('SonarQube Analysis') {
+        //     steps{
+        //         withSonarQubeEnv('sonarqube-9.5') {
+        //         sh "mvn sonar:sonar"
                  
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
             
             
         stage ('test Stage') {
@@ -33,6 +33,12 @@ pipeline {
                     sh 'mvn package'                
             }
         }
+        
+        stage ('Deploy') {
+            steps {
+                sh 'ansible-playbook -i inv.ini main.yml'
+            }
+        }
                 
     }
 
@@ -42,4 +48,7 @@ pipeline {
                 junit 'target/surefire-reports/*.xml'
             }
         }
+        
+
+
 }
