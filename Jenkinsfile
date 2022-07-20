@@ -12,6 +12,7 @@ pipeline {
                  
                 }
             }
+        }
             
             
         stage ('test Stage') {
