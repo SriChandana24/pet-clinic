@@ -19,12 +19,12 @@
       copy:
         src: /var/lib/jenkins/workspace/petclinic/target/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar
         dest: /home/jenkins/snapshot.jar
-# - name: Run petclinic
-#   hosts: app_server
-#   become: yes
-#   become_user: root
-#   tasks:
-#     - name: running ...
-#       systemd:
-#         name: petclinic
-#         state: started
+- name: Run petclinic
+  hosts: app_server
+  become: yes
+  become_user: root
+  tasks:
+    - name: running ...
+      systemd:
+        name: petclinic
+        state: started
